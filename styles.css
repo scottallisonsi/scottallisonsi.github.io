@@ -1,0 +1,138 @@
+:root {
+  --bg: #f8f6f2;
+  --ink: #22201c;
+  --muted: #5b554c;
+  --line: #ddd6ca;
+  --link: #2f4f6f;
+  --link-hover: #1f3b57;
+  --button-bg: #f2ede5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Libre Baskerville", Georgia, serif;
+  line-height: 1.5;
+}
+
+main,
+.site-footer {
+  width: min(700px, calc(100% - 2rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[data-theme="dark"] {
+  --bg: #121315;
+  --ink: #e7e1d7;
+  --muted: #b7afa2;
+  --line: #3b3c40;
+  --link: #9ebfe7;
+  --link-hover: #bfd7f4;
+  --button-bg: #1d1f23;
+}
+
+main {
+  padding-top: 1.2rem;
+}
+
+.utility-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.4rem;
+}
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--button-bg);
+  color: var(--muted);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  margin-top: 0.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.headshot {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.42rem, 2.6vw, 1.85rem);
+  line-height: 1.15;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+}
+
+.lead {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 62ch;
+}
+
+.panel {
+  padding-top: 0.85rem;
+}
+
+h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.12rem;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+li + li {
+  margin-top: 0.22rem;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+}
+
+.site-footer {
+  padding: 1.3rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 560px) {
+  .intro {
+    grid-template-columns: 72px 1fr;
+  }
+
+  .headshot {
+    width: 72px;
+    height: 72px;
+  }
+}
