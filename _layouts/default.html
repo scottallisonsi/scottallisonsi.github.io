@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute(
+          "data-theme",
+          stored || (dark ? "dark" : "light")
+        );
+      })();
+    </script>
+    {% seo %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="{{ site.title }}"
+      href="{{ '/feed.xml' | relative_url }}"
+    />
+    <link rel="icon" href="{{ '/assets/images/portrait.png' | relative_url }}" />
+  </head>
+  <body>
+    <div class="frame" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <a class="wordmark" href="{{ '/' | relative_url }}">Scott Allison Si</a>
+      <nav class="masthead-nav" aria-label="Site">
+        <a href="{{ '/writing/' | relative_url }}">Writing</a>
+        <a href="{{ '/#now' | relative_url }}">Now</a>
+        <a href="{{ '/#library' | relative_url }}">Library</a>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+        ></button>
+      </nav>
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        © <span id="year">{{ site.time | date: "%Y" }}</span> Scott Allison Si
+        <span class="footer-sep">·</span>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        <span class="footer-sep">·</span>
+        <a href="{{ '/colophon/' | relative_url }}">Colophon</a>
+      </p>
+    </footer>
+
+    <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+  </body>
+</html>

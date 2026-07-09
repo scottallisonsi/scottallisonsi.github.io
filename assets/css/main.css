@@ -1,0 +1,537 @@
+/* ---------------------------------------------------------------
+   Scott Allison Si — slow editorial
+   Warm paper, one serif family (Newsreader), hairline frame,
+   dotted-leader indexes. Quiet on purpose.
+   --------------------------------------------------------------- */
+
+:root {
+  --bg: #f6f3ec;
+  --bg-raised: #eee9dd;
+  --ink: #211d16;
+  --muted: #6e675a;
+  --faint: #979078;
+  --line: #ddd5c4;
+  --accent: #4e3d66;
+  --accent-soft: #8474a1;
+}
+
+[data-theme="dark"] {
+  --bg: #171410;
+  --bg-raised: #211d17;
+  --ink: #e9e3d5;
+  --muted: #a69d8b;
+  --faint: #7d7566;
+  --line: #37322a;
+  --accent: #c3aee6;
+  --accent-soft: #8d7ab3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Newsreader", "Iowan Old Style", Georgia, serif;
+  font-optical-sizing: auto;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  animation: page-in 0.5s ease-out;
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* The frame — a hairline border around the viewport, a nod to
+   the slow frame. Desktop only. */
+.frame {
+  position: fixed;
+  inset: 14px;
+  border: 1px solid var(--line);
+  pointer-events: none;
+  z-index: 10;
+}
+
+main,
+.masthead,
+.site-footer {
+  width: min(41rem, calc(100% - 3rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- Masthead ------------------------------------------------ */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  padding: 2.6rem 0 0;
+}
+
+.wordmark {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.masthead-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+}
+
+.masthead-nav a {
+  font-size: 0.88rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.masthead-nav a:hover,
+.masthead-nav a:focus-visible {
+  color: var(--accent);
+}
+
+.theme-toggle {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--faint);
+  font: inherit;
+  font-size: 0.82rem;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+/* ---- Links --------------------------------------------------- */
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* ---- Hero ---------------------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  padding: 3.4rem 0 0;
+}
+
+.hero h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.hero .tagline {
+  margin: 0 0 1.1rem;
+  font-size: 1.12rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.hero .bio p {
+  margin: 0 0 0.8rem;
+  max-width: 56ch;
+}
+
+.portrait {
+  width: 128px;
+  height: auto;
+  margin-top: 0.5rem;
+}
+
+/* ---- Sections ------------------------------------------------ */
+
+.section {
+  margin-top: 3.4rem;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-label::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+
+.section-note {
+  margin: -0.5rem 0 1.1rem;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--faint);
+}
+
+/* ---- Entry lists (dotted-leader index) ----------------------- */
+
+.entry-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry-list li + li {
+  margin-top: 0.55rem;
+}
+
+.entry-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.entry-row a {
+  text-decoration: none;
+}
+
+.entry-row a::after {
+  content: "\00a0\00bb";
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  color: var(--accent);
+}
+
+.entry-row a:hover::after,
+.entry-row a:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.entry-leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted var(--line);
+  transform: translateY(-0.28em);
+}
+
+.entry-year {
+  color: var(--faint);
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.entry-note {
+  margin: 0.1rem 0 0;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 54ch;
+}
+
+/* ---- Now ------------------------------------------------------ */
+
+.now-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.now-list li {
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.now-list li + li {
+  margin-top: 0.45rem;
+}
+
+.now-list li::before {
+  content: "\2014";
+  position: absolute;
+  left: 0;
+  color: var(--faint);
+}
+
+/* ---- Library --------------------------------------------------- */
+
+.library-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.library-list li + li {
+  margin-top: 0.8rem;
+}
+
+.book-title {
+  font-style: italic;
+}
+
+.book-author {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.book-author::before {
+  content: "\00a0\00b7\00a0\00a0";
+  color: var(--faint);
+}
+
+.book-note {
+  margin: 0.05rem 0 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* ---- Elsewhere ------------------------------------------------- */
+
+.elsewhere-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2.2rem;
+}
+
+.elsewhere-list .handle {
+  color: var(--faint);
+  font-size: 0.9rem;
+  margin-left: 0.4rem;
+}
+
+/* ---- Posts ----------------------------------------------------- */
+
+.post {
+  padding-top: 3rem;
+}
+
+.post-meta {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.post-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.post-subtitle {
+  margin: 0.6rem 0 0;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.post-body {
+  margin-top: 2rem;
+}
+
+.post-body p {
+  margin: 0 0 1.1rem;
+}
+
+.post-body h2 {
+  margin: 2.2rem 0 0.7rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.post-body h3 {
+  margin: 1.8rem 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.post-body blockquote {
+  margin: 1.4rem 0;
+  padding: 0.1rem 0 0.1rem 1.3rem;
+  border-left: 2px solid var(--line);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.post-body blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+.post-body hr {
+  border: none;
+  margin: 2.2rem 0;
+  text-align: center;
+}
+
+.post-body hr::after {
+  content: "\00b7\00a0\00a0\00b7\00a0\00a0\00b7";
+  color: var(--faint);
+  letter-spacing: 0.2em;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-body code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--bg-raised);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+.post-body pre {
+  background: var(--bg-raised);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.post-footer {
+  margin-top: 3rem;
+}
+
+.back-link {
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* ---- Writing index --------------------------------------------- */
+
+.year-group {
+  margin-top: 1.6rem;
+}
+
+.year-heading {
+  margin: 0 0 0.7rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Footer ----------------------------------------------------- */
+
+.site-footer {
+  margin-top: 4.5rem;
+  padding: 1.4rem 0 2.4rem;
+  border-top: 1px solid var(--line);
+  color: var(--faint);
+  font-size: 0.86rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+.footer-sep {
+  margin: 0 0.45rem;
+}
+
+/* ---- Responsive -------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .frame {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding-top: 2.4rem;
+  }
+
+  .portrait {
+    width: 96px;
+    order: -1;
+    margin-top: 0;
+  }
+
+  .masthead {
+    padding-top: 1.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
+
+@media print {
+  .frame,
+  .masthead-nav,
+  .theme-toggle {
+    display: none;
+  }
+}

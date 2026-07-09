@@ -1,0 +1,19 @@
+# Who you are. Edit freely — every field here flows into the homepage.
+
+name: Scott Allison Si
+tagline: Product builder, writer, and educator in Singapore.
+
+# Short bio shown on the homepage. Each list item becomes a paragraph.
+bio:
+  - >-
+    I build products, teach people how to build them, and write about
+    what it all does to us. By day I lecture at
+    <a href="https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI">NUS-ISS</a>,
+    where I work with practitioners on product management and the craft
+    of making software that matters.
+  - >-
+    This site is my slow frame: essays, talks, and notes, kept at a
+    deliberate pace. No feed, no metrics — just the work, in one place.
+
+portrait: /assets/images/portrait.png
+portrait_alt: Illustrated portrait of Scott Allison Si
