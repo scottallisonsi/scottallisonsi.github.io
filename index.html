@@ -1,184 +1,129 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Personal website for Scott Allison Si — pixels, products, and prose."
-    />
-    <title>Scott Allison Si | Personal Website</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main id="top">
-      <div class="utility-bar">
-        <button
-          id="theme-toggle"
-          class="theme-toggle"
-          type="button"
-          aria-label="Toggle color theme"
-        >
-          Dark
-        </button>
-      </div>
+---
+layout: default
+---
+<section class="hero">
+  <div>
+    <h1>{{ site.data.profile.name }}</h1>
+    <p class="tagline">{{ site.data.profile.tagline }}</p>
+    <div class="bio">
+      {% for paragraph in site.data.profile.bio %}
+        <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  <img
+    class="portrait"
+    src="{{ site.data.profile.portrait | relative_url }}"
+    alt="{{ site.data.profile.portrait_alt }}"
+    width="112"
+    height="114"
+  />
+</section>
 
-      <section class="intro">
-        <img
-          class="headshot"
-          src="fastforwardistframe.png"
-          alt="Portrait of Scott Allison Si"
-        />
-        <div>
-          <h1>Scott Allison Si</h1>
-          <p class="lead">
-            Product builder, writer, and educator based in Singapore. Find out
-            more
-            <a
-              href="https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI"
-              target="_blank"
-              rel="noopener noreferrer"
-              >here</a
-            >.
-          </p>
+<section id="writing" class="section">
+  <h2 class="section-label">Writing</h2>
+  <ul class="entry-list">
+    {% for post in site.posts limit: 4 %}
+      <li>
+        <div class="entry-row">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="entry-leader"></span>
+          <span class="entry-year">{{ post.date | date: "%b %Y" }}</span>
         </div>
-      </section>
+        {% if post.subtitle %}
+          <p class="entry-note">{{ post.subtitle }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+    {% for essay in site.data.archive limit: 5 %}
+      <li>
+        <div class="entry-row">
+          <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
+          <span class="entry-leader"></span>
+          <span class="entry-year">{{ essay.year }}</span>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="more-link">
+    <a href="{{ '/writing/' | relative_url }}">All writing &raquo;</a>
+  </p>
+</section>
 
-      <section id="writing" class="panel">
-        <h2>Writing</h2>
-        <ul>
-          <li>
-            <a
-              href="https://slowframe.medium.com/hard-is-in-soft-is-out-f9210482e8ac"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Hard is In, Soft is Out</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/2025-year-in-review-74bed9348c35"
-              target="_blank"
-              rel="noopener noreferrer"
-              >2025: Year in Review</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/geminiii-778ba1ac729f"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Geminiii</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/lecturer-lecturing-7f878ceb742f"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Lecturer, Lecturing</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/longform-and-deep-work-046f7facc8c7"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Longform and Deep Work</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/what-is-holding-us-up-6c9cad237784"
-              target="_blank"
-              rel="noopener noreferrer"
-              >What is holding us up?</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/know-thyself-ai-edition-e1c34fcdf24c"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Know thyself, AI edition</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/notes-on-notes-4d396c313813"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Notes on Notes</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/threads-of-fascination-63e086832a0f"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Threads of Fascination</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://slowframe.medium.com/36-not-so-intuitive-perspective-shifts-c3ea1703dd6f"
-              target="_blank"
-              rel="noopener noreferrer"
-              >36 Not-so-Intuitive Perspective Shifts</a
-            >
-          </li>
-        </ul>
-      </section>
+<section id="canon" class="section">
+  <h2 class="section-label">Canon</h2>
+  {% if site.data.canon and site.data.canon.size > 0 %}
+    <ul class="entry-list">
+      {% for essay in site.data.canon %}
+        <li>
+          <div class="entry-row">
+            <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
+            <span class="entry-leader"></span>
+            <span class="entry-year">{{ essay.year }}</span>
+          </div>
+          {% if essay.note %}
+            <p class="entry-note">{{ essay.note }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="section-note">
+      A handpicked shortlist of the essays worth your time — being
+      assembled slowly, as is fitting.
+    </p>
+  {% endif %}
+</section>
 
-      <section id="projects" class="panel">
-        <h2>Projects</h2>
-        <ul>
-          <li>Coming Soon</li>
-        </ul>
-      </section>
+<section id="talks" class="section">
+  <h2 class="section-label">Talks</h2>
+  <ul class="entry-list">
+    {% for talk in site.data.talks %}
+      <li>
+        <div class="entry-row">
+          <a href="{{ talk.url }}" rel="noopener noreferrer">{{ talk.title }}</a>
+          <span class="entry-leader"></span>
+          <span class="entry-year">{{ talk.year }}</span>
+        </div>
+        {% if talk.note %}
+          <p class="entry-note">{{ talk.note }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
 
-      <section id="talks" class="panel">
-        <h2>Recent Talks</h2>
-        <ul>
-          <li>
-            <a
-              href="https://www.youtube.com/live/eMSzz3eMrmA?si=qQKupMqYmkQ-e6cY"
-              target="_blank"
-              rel="noopener noreferrer"
-              >AI + Product</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://youtu.be/TucIqkHZYVs?si=9n9waRClLYfh2AGL"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Tech It or Leave It: Technical Skills You Need in Product
-              Management</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://youtu.be/myfo0QU-aYU?si=hKngBlFMUsYl0529"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Product Experimentation</a
-            >
-          </li>
-        </ul>
-      </section>
-    </main>
+<section id="now" class="section">
+  <h2 class="section-label">Now</h2>
+  <p class="section-note">As of {{ site.data.now.as_of }}</p>
+  <ul class="now-list">
+    {% for item in site.data.now.items %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+</section>
 
-    <footer class="site-footer">
-      <p>© <span id="year"></span> Scott Allison Si</p>
-    </footer>
+<section id="library" class="section">
+  <h2 class="section-label">Library</h2>
+  <ul class="library-list">
+    {% for book in site.data.library %}
+      <li>
+        <span class="book-title">{{ book.title }}</span><span class="book-author">{{ book.author }}</span>
+        {% if book.note %}
+          <p class="book-note">{{ book.note }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
 
-    <script src="script.js"></script>
-  </body>
-</html>
+<section id="elsewhere" class="section">
+  <h2 class="section-label">Elsewhere</h2>
+  <ul class="elsewhere-list">
+    {% for place in site.data.elsewhere %}
+      <li>
+        <a href="{{ place.url }}" rel="noopener noreferrer">{{ place.label }}</a><span class="handle">{{ place.handle }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
