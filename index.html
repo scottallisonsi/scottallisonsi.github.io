@@ -15,26 +15,15 @@ layout: default
     class="portrait"
     src="{{ site.data.profile.portrait | relative_url }}"
     alt="{{ site.data.profile.portrait_alt }}"
-    width="128"
-    height="131"
+    width="112"
+    height="114"
   />
 </section>
 
-<section id="now" class="section">
-  <h2 class="section-label">Now</h2>
-  <p class="section-note">As of {{ site.data.now.as_of }}</p>
-  <ul class="now-list">
-    {% for item in site.data.now.items %}
-      <li>{{ item }}</li>
-    {% endfor %}
-  </ul>
-</section>
-
-{% if site.posts.size > 0 %}
 <section id="writing" class="section">
   <h2 class="section-label">Writing</h2>
   <ul class="entry-list">
-    {% for post in site.posts limit: 5 %}
+    {% for post in site.posts limit: 4 %}
       <li>
         <div class="entry-row">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -46,30 +35,44 @@ layout: default
         {% endif %}
       </li>
     {% endfor %}
-  </ul>
-  <p class="section-note" style="margin-top: 1rem">
-    <a href="{{ '/writing/' | relative_url }}">All writing &raquo;</a>
-  </p>
-</section>
-{% endif %}
-
-<section id="canon" class="section">
-  <h2 class="section-label">Canon</h2>
-  <p class="section-note">Handpicked essays — the ones worth your time.</p>
-  <ul class="entry-list">
-    {% for essay in site.data.canon %}
+    {% for essay in site.data.archive limit: 5 %}
       <li>
         <div class="entry-row">
           <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
           <span class="entry-leader"></span>
           <span class="entry-year">{{ essay.year }}</span>
         </div>
-        {% if essay.note %}
-          <p class="entry-note">{{ essay.note }}</p>
-        {% endif %}
       </li>
     {% endfor %}
   </ul>
+  <p class="more-link">
+    <a href="{{ '/writing/' | relative_url }}">All writing &raquo;</a>
+  </p>
+</section>
+
+<section id="canon" class="section">
+  <h2 class="section-label">Canon</h2>
+  {% if site.data.canon and site.data.canon.size > 0 %}
+    <ul class="entry-list">
+      {% for essay in site.data.canon %}
+        <li>
+          <div class="entry-row">
+            <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
+            <span class="entry-leader"></span>
+            <span class="entry-year">{{ essay.year }}</span>
+          </div>
+          {% if essay.note %}
+            <p class="entry-note">{{ essay.note }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="section-note">
+      A handpicked shortlist of the essays worth your time — being
+      assembled slowly, as is fitting.
+    </p>
+  {% endif %}
 </section>
 
 <section id="talks" class="section">
@@ -90,9 +93,18 @@ layout: default
   </ul>
 </section>
 
+<section id="now" class="section">
+  <h2 class="section-label">Now</h2>
+  <p class="section-note">As of {{ site.data.now.as_of }}</p>
+  <ul class="now-list">
+    {% for item in site.data.now.items %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
 <section id="library" class="section">
   <h2 class="section-label">Library</h2>
-  <p class="section-note">Books that left a mark.</p>
   <ul class="library-list">
     {% for book in site.data.library %}
       <li>

@@ -7,9 +7,8 @@ permalink: /writing/
   <header class="post-header">
     <h1 class="post-title">Writing</h1>
     <p class="post-subtitle">
-      Essays and notes, written here. Older essays live in the
-      <a href="https://slowframe.medium.com">Medium archive</a> —
-      the best of them are in the canon below.
+      New essays are written here. Older ones live in the
+      <a href="https://slowframe.medium.com">Medium archive</a>.
     </p>
   </header>
 </article>
@@ -36,8 +35,24 @@ permalink: /writing/
 {% endfor %}
 
 <section class="section">
+  <h2 class="section-label">From the archive</h2>
+  <ul class="entry-list">
+    {% for essay in site.data.archive %}
+      <li>
+        <div class="entry-row">
+          <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
+          <span class="entry-leader"></span>
+          <span class="entry-year">{{ essay.year }}</span>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if site.data.canon and site.data.canon.size > 0 %}
+<section class="section">
   <h2 class="section-label">The Canon</h2>
-  <p class="section-note">Handpicked from the archive.</p>
+  <p class="section-note">Handpicked from everything above.</p>
   <ul class="entry-list">
     {% for essay in site.data.canon %}
       <li>
@@ -53,3 +68,4 @@ permalink: /writing/
     {% endfor %}
   </ul>
 </section>
+{% endif %}

@@ -1,50 +1,9 @@
-# The Canon — your handpicked best essays, wherever they live.
-# Each entry: title, url, year, and an optional one-line `note` shown
-# under the title. The notes below are drafted from the titles alone —
-# rewrite them in your own words.
-
-- title: Hard is In, Soft is Out
-  url: https://slowframe.medium.com/hard-is-in-soft-is-out-f9210482e8ac
-  year: 2025
-  note: On the shifting market for skills — and what we lose when we rank them.
-
-- title: "2025: Year in Review"
-  url: https://slowframe.medium.com/2025-year-in-review-74bed9348c35
-  year: 2025
-  note: Twelve months, taken stock of slowly.
-
-- title: Geminiii
-  url: https://slowframe.medium.com/geminiii-778ba1ac729f
-  year: 2025
-
-- title: Lecturer, Lecturing
-  url: https://slowframe.medium.com/lecturer-lecturing-7f878ceb742f
-  year: 2025
-  note: Notes from the front of the room.
-
-- title: Longform and Deep Work
-  url: https://slowframe.medium.com/longform-and-deep-work-046f7facc8c7
-  year: 2024
-  note: Why sustained attention and sustained writing are the same discipline.
-
-- title: What is holding us up?
-  url: https://slowframe.medium.com/what-is-holding-us-up-6c9cad237784
-  year: 2024
-
-- title: Know thyself, AI edition
-  url: https://slowframe.medium.com/know-thyself-ai-edition-e1c34fcdf24c
-  year: 2024
-  note: Self-knowledge, now with a mirror that talks back.
-
-- title: Notes on Notes
-  url: https://slowframe.medium.com/notes-on-notes-4d396c313813
-  year: 2024
-  note: A system for remembering what you read, and why it matters.
-
-- title: Threads of Fascination
-  url: https://slowframe.medium.com/threads-of-fascination-63e086832a0f
-  year: 2024
-
-- title: 36 Not-so-Intuitive Perspective Shifts
-  url: https://slowframe.medium.com/36-not-so-intuitive-perspective-shifts-c3ea1703dd6f
-  year: 2024
+# The Canon — your handpicked best work, annotated in your own words.
+# While this list is empty, the site shows a graceful "being assembled" note.
+#
+# To add an entry, uncomment and edit:
+#
+# - title: Essay Title
+#   url: https://slowframe.medium.com/...
+#   year: 2024
+#   note: One line, in your voice, on why this one earns its place.

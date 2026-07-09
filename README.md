@@ -34,11 +34,15 @@ feed. The URL will be `/writing/YYYY/slug/`.
 | File | Drives | Notes |
 | --- | --- | --- |
 | `_data/profile.yml` | Name, tagline, bio paragraphs, portrait | Bio items accept inline HTML links |
-| `_data/now.yml` | The "Now" section | Update `as_of` when you revise it |
-| `_data/canon.yml` | Handpicked best essays | `note:` is an optional annotation line |
+| `_data/archive.yml` | Medium essays, listed under Writing | First 5 show on the homepage; all on /writing |
+| `_data/canon.yml` | Handpicked best essays | Empty = the site shows a "being assembled" note; `note:` is an optional annotation |
 | `_data/talks.yml` | Talks list | `year` and `note` optional |
+| `_data/now.yml` | The "Now" section | Update `as_of` when you revise it |
 | `_data/library.yml` | Books | `note` optional |
 | `_data/elsewhere.yml` | Contact / profiles row | `handle` is the small grey text |
+
+Homepage section order: Writing, Canon, Talks, Now, Library, Elsewhere
+(numbered automatically).
 
 Each file has a comment at the top showing its format. Order in the file
 is the order on the page.
@@ -62,5 +66,7 @@ bundle exec jekyll serve
 
 Slow editorial: one serif family ([Newsreader](https://fonts.google.com/specimen/Newsreader)),
 warm paper / ink palette with a plum accent, dotted-leader indexes,
-and a hairline viewport frame — the "slow frame." Dark mode follows the
-system and can be toggled; the choice is remembered in `localStorage`.
+numbered section labels, a whisper of paper grain, and a hairline
+viewport frame with registration corner marks — the "slow frame."
+Dark mode follows the system and can be toggled; the choice is
+remembered in `localStorage`.

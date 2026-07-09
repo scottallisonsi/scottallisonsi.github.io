@@ -44,6 +44,23 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   animation: page-in 0.5s ease-out;
+  counter-reset: section;
+}
+
+/* A whisper of paper grain. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] body::after {
+  filter: invert(1);
+  opacity: 0.04;
 }
 
 @keyframes page-in {
@@ -56,14 +73,34 @@ body {
   color: var(--bg);
 }
 
-/* The frame — a hairline border around the viewport, a nod to
-   the slow frame. Desktop only. */
+/* The frame — a hairline border with registration corner marks,
+   a nod to the slow frame. Desktop only. */
 .frame {
   position: fixed;
   inset: 14px;
   border: 1px solid var(--line);
   pointer-events: none;
   z-index: 10;
+  background-image:
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted)),
+    linear-gradient(var(--muted), var(--muted));
+  background-repeat: no-repeat;
+  background-size:
+    12px 1px, 1px 12px,
+    12px 1px, 1px 12px,
+    12px 1px, 1px 12px,
+    12px 1px, 1px 12px;
+  background-position:
+    top left, top left,
+    top right, top right,
+    bottom left, bottom left,
+    bottom right, bottom right;
 }
 
 main,
@@ -82,7 +119,7 @@ main,
   align-items: baseline;
   justify-content: space-between;
   gap: 0.3rem 1rem;
-  padding: 2.6rem 0 0;
+  padding: 2rem 0 0;
 }
 
 .wordmark {
@@ -151,46 +188,46 @@ a:focus-visible {
   grid-template-columns: 1fr auto;
   gap: 2rem;
   align-items: start;
-  padding: 3.4rem 0 0;
+  padding: 2.4rem 0 0;
 }
 
 .hero h1 {
-  margin: 0 0 0.4rem;
-  font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+  margin: 0 0 0.3rem;
+  font-size: clamp(2rem, 5vw, 2.6rem);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.01em;
 }
 
 .hero .tagline {
-  margin: 0 0 1.1rem;
-  font-size: 1.12rem;
+  margin: 0 0 0.9rem;
+  font-size: 1.08rem;
   font-style: italic;
   color: var(--muted);
 }
 
 .hero .bio p {
-  margin: 0 0 0.8rem;
-  max-width: 56ch;
+  margin: 0 0 0.7rem;
+  max-width: 58ch;
 }
 
 .portrait {
-  width: 128px;
+  width: 112px;
   height: auto;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 /* ---- Sections ------------------------------------------------ */
 
 .section {
-  margin-top: 3.4rem;
+  margin-top: 2.6rem;
 }
 
 .section-label {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  margin: 0 0 1.1rem;
+  gap: 0.8rem;
+  margin: 0 0 1rem;
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -198,10 +235,35 @@ a:focus-visible {
   color: var(--muted);
 }
 
+/* Frame-counter numbering: 01, 02, 03… */
+.section-label::before {
+  counter-increment: section;
+  content: counter(section, decimal-leading-zero);
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
 .section-label::after {
   content: "";
   flex: 1;
   border-top: 1px solid var(--line);
+}
+
+.more-link {
+  margin: 0.9rem 0 0;
+  font-size: 0.92rem;
+}
+
+.more-link a {
+  font-style: italic;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.more-link a:hover,
+.more-link a:focus-visible {
+  color: var(--accent);
 }
 
 .section-note {
