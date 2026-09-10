@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Books Scott Allison Si has read, with themes, personal ratings, and an interactive bookshelf.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Books | Scott Allison Si">
+  <meta property="og:description" content="Books Scott Allison Si has read, with themes, personal ratings, and an interactive bookshelf.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://scottallisonsi.github.io/books/">
+  <link rel="icon" href="../assets/portrait.webp" type="image/webp">
+  <title>Books | Scott Allison Si</title>
+  <script src="../theme.js"></script>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="books.css">
+  <script src="../script.js" defer></script>
+  <script src="books.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to library</a>
+  <div class="page library-page">
+    <header class="masthead">
+      <a class="edition home-link" href="../">Pixels, Products, and Prose</a>
+      <div class="header-tools">
+        <nav aria-label="Main navigation"><a href="../">Home</a><a href="./" aria-current="page">Books</a><a href="https://www.goodreads.com/scottsi">Goodreads &#8599;</a></nav>
+        <button id="theme-toggle" type="button" hidden aria-label="Switch to dark mode"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg><span id="theme-label">Dark</span></button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="library-intro" aria-labelledby="library-title">
+        <h1 id="library-title">Books read</h1><p>Books I've read, from <a href="https://www.goodreads.com/scottsi">my Goodreads library &#8599;</a></p>
+      </section>
+      <section class="reading-patterns" aria-labelledby="patterns-title">
+        <div class="pattern-header"><h2 id="patterns-title">{{TOTAL}} books, {{THEME_COUNT}} recurring themes</h2><span>One mark = one book</span></div>
+        <div class="pattern-layout"><div class="book-map" role="img" aria-label="{{MAP_LABEL}}">{{BOOK_MAP}}</div><div class="pattern-insight">{{INSIGHT}}</div></div>
+        <div class="theme-legend" role="group" aria-label="Filter by theme">{{THEMES}}</div>
+        <div class="pattern-footer"><p>{{AUTHOR_INSIGHT}}</p><details><summary>How this is grouped</summary><p>Editorial groupings, not Goodreads genres. Each book has one primary theme; overlaps are simplified. New books appear as "Not yet grouped" until reviewed. Counts reflect the full read shelf, including unrated books. No reading dates or reading pace are inferred.</p></details></div>
+      </section>
+      <div class="library-controls" id="library-controls" hidden>
+        <div class="control-bottom">
+          <label class="search-label"><span class="sr-only">Search books or authors</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="book-search" type="search" placeholder="Find a book or an author" autocomplete="off"></label>
+          <label class="select-label"><span>My rating</span><select id="rating-filter"><option value="all">Any rating</option><option value="5">5 stars</option><option value="4">4+ stars</option><option value="unrated">Not rated</option></select></label>
+          <label class="select-label"><span>Sort by</span><select id="book-sort"><option value="added">Recently added</option><option value="rating">My highest rated</option><option value="title">Title A–Z</option><option value="author">Author A–Z</option></select></label>
+          <div class="view-toggle" role="group" aria-label="Library view"><button type="button" data-view="covers" aria-pressed="true">Covers</button><button type="button" data-view="spines" aria-pressed="false">Spines</button></div>
+        </div>
+      </div>
+      <div class="results-heading" id="collection"><p id="results-count" role="status" aria-live="polite">{{TOTAL}} books read</p><button id="clear-filters" type="button" hidden>Clear filters</button><button type="button" id="surprise" class="surprise-button" hidden><span aria-hidden="true">&#8644;</span> Pick a book</button></div>
+      <noscript><p class="noscript-note">All books are shown below. Enable JavaScript for search, filters, and the spine view.</p></noscript>
+      <ul class="books-grid" id="books-grid" aria-label="Books">{{CARDS}}</ul>
+      <div class="empty-library" id="empty-library" hidden><h2>No books on this shelf.</h2><p>Try another author, a shorter title, or a different filter.</p><button type="button" id="reset-filters">Clear filters</button></div>
+      <div class="library-source"><span>From Goodreads &middot; Updated <time datetime="{{UPDATED}}">{{UPDATED_LABEL}}</time><br>Stars are my ratings. Unrated books are not zero-star books.</span></div>
+    </main>
+    <footer><span>&copy; <span id="year">{{YEAR}}</span> Scott Allison Si</span><a href="../">&#8592; Back to the main page</a><a href="#main">Back to top &#8593;</a></footer>
+  </div>
+  <dialog id="book-dialog" aria-labelledby="dialog-title">
+    <button type="button" class="dialog-close" id="dialog-close" aria-label="Close book details">&#215;</button>
+    <div class="dialog-layout"><div class="dialog-cover" id="dialog-cover"></div><div class="dialog-copy"><p class="eyebrow" id="dialog-shelf"></p><h2 id="dialog-title"></h2><p id="dialog-author"></p><p id="dialog-rating"></p><dl id="dialog-facts"></dl><a id="dialog-link" class="goodreads-link" href="https://www.goodreads.com/scottsi">View on Goodreads &#8599;</a></div></div>
+  </dialog>
+  <script type="application/json" id="book-data">{{DATA}}</script>
+</body>
+</html>

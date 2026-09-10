@@ -11,8 +11,8 @@ Edit `content/site.json`, then run:
 node scripts/build.mjs
 ```
 
-This regenerates `index.html`. Node 18+ is needed only to build, never to serve.
-Keep the generated `index.html` alongside the source files when publishing.
+This regenerates `index.html` and `books/index.html`. Node 18+ is needed only to
+build, never to serve. Keep both generated pages alongside the source files when publishing.
 The layout lives in `templates/index.html`; visual styles live in `styles.css`.
 Do not edit the generated page directly: the next build would overwrite it.
 
@@ -56,6 +56,46 @@ The command never changes your curated homepage. A failed or empty feed leaves
 the existing candidate list intact. Refresh is manual, not scheduled.
 Visitors load the saved HTML, never the feed.
 
+### Refresh the bookshelf
+
+The `/books/` page shows only books marked read in your public Goodreads library,
+not a live widget. The import retains the other shelves for future use, but they
+are never embedded in the page. No login, API key, or visitor tracking is needed.
+
+```sh
+python3 scripts/update-books.py
+node scripts/cache-book-covers.mjs
+node scripts/build.mjs
+```
+
+The optional cover-cache step needs the `sharp` image library. Install it once
+with `npm install --no-save --package-lock=false sharp`, or point `SHARP_MODULE`
+to an existing installation. Do not commit `node_modules/`. Existing covers are
+reused, and an unavailable cover gets a title-and-author fallback. New content
+works without running the cover step. The importer needs Python 3 only; failed
+requests or invalid data leave the previous snapshot intact.
+
+Data lives in `content/books.json`, the layout in `templates/books.html`, and
+the small interaction and style files in `books/`. Covers are local WebPs in
+`assets/books/`, at most 240 by 360 pixels. All read books are shown together,
+with native lazy loading for covers instead of pagination. Visitors never contact Goodreads until
+they choose an outbound link. Search, filters, sorting, and the cover/spine
+switch run entirely in the browser. Filter URLs can be bookmarked. Without
+JavaScript, all books remain ordinary links.
+
+Ratings are yours, not community averages. Unrated is distinct from zero.
+The default order is date added, not date read: most entries have no read date.
+The page displays its snapshot date; refreshing and publishing are manual.
+Automatic syncing is intentionally not enabled.
+
+The infographic is built from `content/book-themes.json`. Its six themes are
+editorial primary-topic groupings, not Goodreads-supplied genres. Assign each
+book ID to at most one group. All counts, percentages, and the most represented
+author are calculated at build time from read books only. New books without a
+theme appear as "Not yet grouped", never guessed into a category. Clicking a
+theme filters the bookshelf; the infographic continues to summarize the full
+collection. No charting library, images, or AI calls are required to render it.
+
 ## Preview
 
 ```sh
@@ -79,6 +119,7 @@ Rebuild, then copy these public assets to the Pages repository root:
 - `styles.css`
 - `theme.js`
 - `script.js`
+- `books/`
 - `assets/`
 
 Also commit `content/`, `templates/`, `scripts/`, and this README so the site
@@ -99,5 +140,6 @@ asset provenance are in `docs/avatar-edit.md`.
 - All writing, project information, and talks work without JavaScript.
 - Motion respects reduced-motion preferences.
 - Page navigation and focus outlines work with a keyboard.
-- All page assets are local; the complete initial payload is roughly 35 KB
-  before HTTP compression. No install step is needed to preview or publish.
+- All page assets are local; the homepage payload is roughly 35 KB before HTTP
+  compression. The bookshelf loads its own small scripts and lazy-loaded covers
+  only when visited. No install step is needed to preview or publish.

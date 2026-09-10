@@ -43,3 +43,5 @@ const html = template.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
 });
 await writeFile(new URL("index.html", root), html);
 console.log(`Built index.html: ${data.writing.length} articles, ${data.projects.length} projects, ${data.talks.length} talks.`);
+
+await import('./build-books.mjs');
