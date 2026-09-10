@@ -126,9 +126,9 @@ footer a { text-decoration: none; }
   .page { width: calc(100% - 36px); }
   .masthead { flex-wrap: wrap; padding: 17px 0 10px; gap: 5px; }
   .edition { width: 100%; font-size: 10px; }
-  .header-tools { width: 100%; justify-content: space-between; }
-  nav { gap: 25px; }
-  #theme-toggle { border-left: 0; }
+  .header-tools { width: 100%; justify-content: space-between; gap: 8px; }
+  nav { gap: clamp(12px, 3vw, 25px); }
+  #theme-toggle { border-left: 0; padding-left: 8px; }
   .intro { padding: 29px 0 30px; grid-template-columns: 66px 1fr; gap: 18px; align-items: start; }
   .portrait-wrap { width: 66px; height: 66px; margin-top: 24px; }
   .portrait-wrap img { inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); }
