@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{NAME}}. {{BIO}} Writing, projects, and conversations on products, technology, and life.">
+    <meta name="color-scheme" content="light dark">
+    <meta property="og:title" content="{{NAME}} | {{TAGLINE}}">
+    <meta property="og:description" content="{{BIO}} A home for writing, projects, and conversations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scottallisonsi.github.io/">
+    <link rel="canonical" href="https://scottallisonsi.github.io/">
+    <link rel="icon" href="assets/portrait.webp" type="image/webp">
+    <link rel="alternate" type="application/rss+xml" title="Scott Si on Medium" href="https://slowframe.medium.com/feed">
+    <title>{{NAME}} | {{TAGLINE}}</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="masthead">
+        <span class="edition">{{TAGLINE}}</span>
+        <div class="header-tools">
+          <nav aria-label="Main navigation"><a href="#writing">Writing</a><a href="#projects">Projects</a><a href="#talks">Talks</a></nav>
+          <button id="theme-toggle" type="button" hidden aria-label="Switch to dark mode">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg>
+            <span id="theme-label">Dark</span>
+          </button>
+        </div>
+      </header>
+      <main id="main">
+        <section class="intro" aria-labelledby="name">
+          <a class="portrait-wrap" href="{{BIO_URL}}" aria-label="About Scott Allison Si">
+            <img class="portrait-neutral" src="assets/portrait.webp" width="104" height="104" alt="" fetchpriority="high">
+            <img class="portrait-smile" src="assets/portrait-smile.webp" width="104" height="104" alt="" aria-hidden="true">
+          </a>
+          <div class="intro-copy">
+            <p class="eyebrow location">Singapore <span aria-hidden="true">/</span> A personal collection</p>
+            <h1 id="name">{{NAME}}</h1>
+            <p class="bio">{{BIO}}<br><a href="{{BIO_URL}}">More about me <span aria-hidden="true">&#8599;</span></a></p>
+          </div>
+        </section>
+        <section id="writing" class="section" aria-labelledby="writing-title">
+          <div class="section-heading"><h2 id="writing-title">Writing</h2><p>Notes on technology,<br> work, and being human.</p><a class="small-link" href="{{WRITING_URL}}">All writing <span aria-hidden="true">&#8599;</span></a></div>
+          <div class="section-content"><div class="list-caption"><span>Selected from Slowframe</span><span>Published</span></div><ol class="writing-list">{{WRITING}}</ol></div>
+        </section>
+        <section id="projects" class="section" aria-labelledby="projects-title">
+          <div class="section-heading"><h2 id="projects-title">Projects</h2><p>Ideas, made tangible.</p></div>
+          <div class="section-content">{{PROJECTS}}</div>
+        </section>
+        <section id="talks" class="section" aria-labelledby="talks-title">
+          <div class="section-heading"><h2 id="talks-title">Recent talks</h2><p>Products, practice,<br> and what comes next.</p></div>
+          <div class="section-content"><ul class="talk-list">{{TALKS}}</ul></div>
+        </section>
+        <section class="elsewhere" aria-labelledby="elsewhere-title"><h2 id="elsewhere-title">Keep in touch.</h2><p>Find me elsewhere on the internet.</p><div><a href="{{LINKEDIN_URL}}">LinkedIn <span aria-hidden="true">&#8599;</span></a><a href="{{WRITING_URL}}">Medium <span aria-hidden="true">&#8599;</span></a><a href="{{GOODREADS_URL}}">Goodreads <span aria-hidden="true">&#8599;</span></a></div></section>
+      </main>
+      <footer><span>&copy; <span id="year">{{YEAR}}</span> {{NAME}}</span><span>A little corner of the internet.</span><a href="#main">Back to top &#8593;</a></footer>
+    </div>
+  </body>
+</html>
