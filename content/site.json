@@ -28,12 +28,13 @@
       ]
     },
     {
-      "title": "BlowUp",
-      "description": "A new experiment taking shape. More to share soon.",
-      "url": "",
-      "status": "Coming soon",
+      "title": "Blowup",
+      "description": "Take an automatic watch apart in 3D. Explore its layers, inspect the mechanism, and see how wrist motion powers the hands.",
+      "url": "https://scottallisonsi.github.io/blowup/",
+      "status": "Live / Interactive 3D",
       "tags": [
-        "Experiment"
+        "Learning",
+        "Exploration"
       ]
     }
   ],

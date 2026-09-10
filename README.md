@@ -1,6 +1,6 @@
 # Scott Allison Si
 
-A small, editorial personal website. Plain HTML, CSS, and a little JavaScript;
+A small, editorial personal website. The homepage uses plain HTML, CSS, and a little JavaScript;
 no framework, dependencies, remote fonts, analytics, or video embeds.
 
 ## Update content
@@ -35,7 +35,7 @@ link. Status and tags are optional. An empty project list has a coming-soon stat
 The artwork is decorative CSS, not a product screenshot.
 
 Freewheeling's description was checked against its live homepage. The Atlas copy
-is based on your Civilizational Peak Atlas concept. BlowUp has teaser copy only.
+is based on your Civilizational Peak Atlas concept. Blowup links to its standalone interactive watch at `/blowup/`.
 
 ### Curate writing and discover new articles
 
@@ -143,3 +143,30 @@ asset provenance are in `docs/avatar-edit.md`.
 - All page assets are local; the homepage payload is roughly 35 KB before HTTP
   compression. The bookshelf loads its own small scripts and lazy-loaded covers
   only when visited. No install step is needed to preview or publish.
+
+## Blowup watch explorer
+
+`/blowup/` is a separate React/Three.js application with prebuilt static files in
+`blowup/`. Its source and lockfile live in `tools/blowup/`, excluded from Jekyll.
+The homepage links to it with a normal anchor; it never loads or prefetches the
+watch bundle. No iframe, shared framework, external runtime, or service worker
+is involved. The watch also links back to the homepage.
+
+To update it (Node 22.12+):
+
+```sh
+npm --prefix tools/blowup ci
+npm --prefix tools/blowup run build
+node scripts/build.mjs
+node scripts/check-blowup.mjs
+```
+
+Commit both `tools/blowup/` and the generated `blowup/` assets. Keep the existing
+Jekyll setup: the export uses ordinary `assets/` filenames under `/blowup/`,
+so no underscore-directory include rule or `.nojekyll` file is needed.
+
+The watch is an original simplified NH35 educational reconstruction, using no
+purchased model. Dependencies' license texts are included in
+`blowup/THIRD_PARTY_LICENSES.txt`; this text is not fetched by the application.
+The 3D module is loaded separately on the subpage; playback is on demand and
+stops rendering when the tab is hidden.

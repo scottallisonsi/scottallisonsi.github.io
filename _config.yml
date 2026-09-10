@@ -36,3 +36,4 @@ exclude:
   - templates/
   - scripts/
   - docs/
+  - tools/
