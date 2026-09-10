@@ -1,129 +1,165 @@
----
-layout: default
----
-<section class="hero">
-  <div>
-    <h1>{{ site.data.profile.name }}</h1>
-    <p class="tagline">{{ site.data.profile.tagline }}</p>
-    <div class="bio">
-      {% for paragraph in site.data.profile.bio %}
-        <p>{{ paragraph }}</p>
-      {% endfor %}
-    </div>
-  </div>
-  <img
-    class="portrait"
-    src="{{ site.data.profile.portrait | relative_url }}"
-    alt="{{ site.data.profile.portrait_alt }}"
-    width="112"
-    height="114"
-  />
-</section>
-
-<section id="writing" class="section">
-  <h2 class="section-label">Writing</h2>
-  <ul class="entry-list">
-    {% for post in site.posts limit: 4 %}
-      <li>
-        <div class="entry-row">
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <span class="entry-leader"></span>
-          <span class="entry-year">{{ post.date | date: "%b %Y" }}</span>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Scott Allison Si. Product builder, writer, and educator based in Singapore. Writing, projects, and conversations on products, technology, and life.">
+    <meta name="color-scheme" content="light dark">
+    <meta property="og:title" content="Scott Allison Si | Pixels, Products, and Prose">
+    <meta property="og:description" content="Product builder, writer, and educator based in Singapore. A home for writing, projects, and conversations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scottallisonsi.github.io/">
+    <link rel="canonical" href="https://scottallisonsi.github.io/">
+    <link rel="icon" href="assets/portrait.webp" type="image/webp">
+    <link rel="alternate" type="application/rss+xml" title="Scott Si on Medium" href="https://slowframe.medium.com/feed">
+    <title>Scott Allison Si | Pixels, Products, and Prose</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="masthead">
+        <span class="edition">Pixels, Products, and Prose</span>
+        <div class="header-tools">
+          <nav aria-label="Main navigation"><a href="#writing">Writing</a><a href="#projects">Projects</a><a href="#talks">Talks</a></nav>
+          <button id="theme-toggle" type="button" hidden aria-label="Switch to dark mode">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg>
+            <span id="theme-label">Dark</span>
+          </button>
         </div>
-        {% if post.subtitle %}
-          <p class="entry-note">{{ post.subtitle }}</p>
-        {% endif %}
-      </li>
-    {% endfor %}
-    {% for essay in site.data.archive limit: 5 %}
-      <li>
-        <div class="entry-row">
-          <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
-          <span class="entry-leader"></span>
-          <span class="entry-year">{{ essay.year }}</span>
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
-  <p class="more-link">
-    <a href="{{ '/writing/' | relative_url }}">All writing &raquo;</a>
-  </p>
-</section>
-
-<section id="canon" class="section">
-  <h2 class="section-label">Canon</h2>
-  {% if site.data.canon and site.data.canon.size > 0 %}
-    <ul class="entry-list">
-      {% for essay in site.data.canon %}
-        <li>
-          <div class="entry-row">
-            <a href="{{ essay.url }}" rel="noopener noreferrer">{{ essay.title }}</a>
-            <span class="entry-leader"></span>
-            <span class="entry-year">{{ essay.year }}</span>
+      </header>
+      <main id="main">
+        <section class="intro" aria-labelledby="name">
+          <a class="portrait-wrap" href="https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI" aria-label="About Scott Allison Si">
+            <img class="portrait-neutral" src="assets/portrait.webp" width="104" height="104" alt="" fetchpriority="high">
+            <img class="portrait-smile" src="assets/portrait-smile.webp" width="104" height="104" alt="" aria-hidden="true">
+          </a>
+          <div class="intro-copy">
+            <p class="eyebrow location">Singapore <span aria-hidden="true">/</span> A personal collection</p>
+            <h1 id="name">Scott Allison Si</h1>
+            <p class="bio">Product builder, writer, and educator based in Singapore.<br><a href="https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI">More about me <span aria-hidden="true">&#8599;</span></a></p>
           </div>
-          {% if essay.note %}
-            <p class="entry-note">{{ essay.note }}</p>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p class="section-note">
-      A handpicked shortlist of the essays worth your time — being
-      assembled slowly, as is fitting.
-    </p>
-  {% endif %}
-</section>
-
-<section id="talks" class="section">
-  <h2 class="section-label">Talks</h2>
-  <ul class="entry-list">
-    {% for talk in site.data.talks %}
-      <li>
-        <div class="entry-row">
-          <a href="{{ talk.url }}" rel="noopener noreferrer">{{ talk.title }}</a>
-          <span class="entry-leader"></span>
-          <span class="entry-year">{{ talk.year }}</span>
-        </div>
-        {% if talk.note %}
-          <p class="entry-note">{{ talk.note }}</p>
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-</section>
-
-<section id="now" class="section">
-  <h2 class="section-label">Now</h2>
-  <p class="section-note">As of {{ site.data.now.as_of }}</p>
-  <ul class="now-list">
-    {% for item in site.data.now.items %}
-      <li>{{ item }}</li>
-    {% endfor %}
-  </ul>
-</section>
-
-<section id="library" class="section">
-  <h2 class="section-label">Library</h2>
-  <ul class="library-list">
-    {% for book in site.data.library %}
-      <li>
-        <span class="book-title">{{ book.title }}</span><span class="book-author">{{ book.author }}</span>
-        {% if book.note %}
-          <p class="book-note">{{ book.note }}</p>
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-</section>
-
-<section id="elsewhere" class="section">
-  <h2 class="section-label">Elsewhere</h2>
-  <ul class="elsewhere-list">
-    {% for place in site.data.elsewhere %}
-      <li>
-        <a href="{{ place.url }}" rel="noopener noreferrer">{{ place.label }}</a><span class="handle">{{ place.handle }}</span>
-      </li>
-    {% endfor %}
-  </ul>
-</section>
+        </section>
+        <section id="writing" class="section" aria-labelledby="writing-title">
+          <div class="section-heading"><h2 id="writing-title">Writing</h2><p>Notes on technology,<br> work, and being human.</p><a class="small-link" href="https://slowframe.medium.com">All writing <span aria-hidden="true">&#8599;</span></a></div>
+          <div class="section-content"><div class="list-caption"><span>Selected from Slowframe</span><span>Published</span></div><ol class="writing-list"><li>
+  <a class="writing-row" href="https://slowframe.medium.com/when-ai-gives-you-more-94978e9f1619">
+    <span class="entry-number" aria-hidden="true">01</span>
+    <span class="entry-title">When AI gives you more</span>
+    <time datetime="2026-08-31">Aug 2026</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://slowframe.medium.com/watches-as-cosplay-and-the-objects-that-own-us-b4e11ad0fdbf">
+    <span class="entry-number" aria-hidden="true">02</span>
+    <span class="entry-title">Watches as Cosplay and the Objects that Own Us</span>
+    <time datetime="2026-05-31">May 2026</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/lecturer-lecturing-7f878ceb742f">
+    <span class="entry-number" aria-hidden="true">03</span>
+    <span class="entry-title">Lecturer, Lecturing</span>
+    <time datetime="2025-10-31">Oct 2025</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/notes-on-notes-4d396c313813">
+    <span class="entry-number" aria-hidden="true">04</span>
+    <span class="entry-title">Notes on Notes</span>
+    <time datetime="2025-06-30">Jun 2025</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/powerpoint-craftsman-1e80347c77c2">
+    <span class="entry-number" aria-hidden="true">05</span>
+    <span class="entry-title">Powerpoint Craftsman</span>
+    <time datetime="2024-08-31">Aug 2024</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/the-tyranny-of-the-measurable-2e2823a589b3">
+    <span class="entry-number" aria-hidden="true">06</span>
+    <span class="entry-title">The Tyranny of the Measurable</span>
+    <time datetime="2024-01-31">Jan 2024</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/the-fiction-of-frictionless-356c8356972e">
+    <span class="entry-number" aria-hidden="true">07</span>
+    <span class="entry-title">The Fiction of Frictionless</span>
+    <time datetime="2023-09-30">Sep 2023</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/the-impressionism-of-writing-how-writing-will-evolve-in-the-age-of-ai-d6f139ef0d6a">
+    <span class="entry-number" aria-hidden="true">08</span>
+    <span class="entry-title">The Photographic Rendering of Words: How Writing Will Evolve in the Age of AI</span>
+    <time datetime="2023-04-02">Apr 2023</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/career-as-a-canvas-3bf7486fe490">
+    <span class="entry-number" aria-hidden="true">09</span>
+    <span class="entry-title">Career as a Canvas</span>
+    <time datetime="2020-06-29">Jun 2020</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li>
+<li>
+  <a class="writing-row" href="https://medium.com/@slowframe/product-self-fit-f051d2f97c5f">
+    <span class="entry-number" aria-hidden="true">10</span>
+    <span class="entry-title">Product-Self Fit: Choosing What to Buy and Why</span>
+    <time datetime="2017-07-02">Jul 2017</time><span class="arrow" aria-hidden="true">&#8599;</span>
+  </a>
+</li></ol></div>
+        </section>
+        <section id="projects" class="section" aria-labelledby="projects-title">
+          <div class="section-heading"><h2 id="projects-title">Projects</h2><p>Ideas, made tangible.</p></div>
+          <div class="section-content"><ul class="project-list"><li class="project">
+  <div class="project-art art-0" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="project-copy"><p class="eyebrow">Live / Web tool</p>
+  <h3><a href="https://freewheeling.io">Freewheeling.io <span class="arrow" aria-hidden="true">&#8599;</span></a></h3>
+  <p>A little randomness goes a long way. Spin a wheel, pick a name, or make teams for your next class or workshop.</p>
+  <p class="project-tags">Learning / Play</p></div>
+</li>
+<li class="project">
+  <div class="project-art art-1" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="project-copy"><p class="eyebrow">Exploration</p>
+  <h3>Civilizational Peak Atlas</h3>
+  <p>An atlas of human achievement and experience, across nine domains. From cities and craft to ideas and the natural sublime.</p>
+  <p class="project-tags">Culture / Discovery</p></div>
+</li>
+<li class="project">
+  <div class="project-art art-2" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="project-copy"><p class="eyebrow">Coming soon</p>
+  <h3>BlowUp</h3>
+  <p>A new experiment taking shape. More to share soon.</p>
+  <p class="project-tags">Experiment</p></div>
+</li></ul></div>
+        </section>
+        <section id="talks" class="section" aria-labelledby="talks-title">
+          <div class="section-heading"><h2 id="talks-title">Recent talks</h2><p>Products, practice,<br> and what comes next.</p></div>
+          <div class="section-content"><ul class="talk-list"><li><a class="talk-row" href="https://www.youtube.com/watch?v=eMSzz3eMrmA">
+  <span class="entry-number" aria-hidden="true">01</span>
+  <span class="talk-copy"><span class="talk-title">AI + Product</span><span class="talk-description">On the intersection of artificial intelligence and product management.</span></span>
+  <span class="watch">Watch <span class="arrow" aria-hidden="true">&#8599;</span></span>
+</a></li>
+<li><a class="talk-row" href="https://www.youtube.com/watch?v=TucIqkHZYVs">
+  <span class="entry-number" aria-hidden="true">02</span>
+  <span class="talk-copy"><span class="talk-title">Tech It or Leave It</span><span class="talk-description">Technical skills you need in product management.</span></span>
+  <span class="watch">Watch <span class="arrow" aria-hidden="true">&#8599;</span></span>
+</a></li>
+<li><a class="talk-row" href="https://www.youtube.com/watch?v=myfo0QU-aYU">
+  <span class="entry-number" aria-hidden="true">03</span>
+  <span class="talk-copy"><span class="talk-title">Product Experimentation</span><span class="talk-description">A conversation about experimentation in product management.</span></span>
+  <span class="watch">Watch <span class="arrow" aria-hidden="true">&#8599;</span></span>
+</a></li></ul></div>
+        </section>
+        <section class="elsewhere" aria-labelledby="elsewhere-title"><h2 id="elsewhere-title">Keep in touch.</h2><p>Find me elsewhere on the internet.</p><div><a href="https://sg.linkedin.com/in/scottsi">LinkedIn <span aria-hidden="true">&#8599;</span></a><a href="https://slowframe.medium.com">Medium <span aria-hidden="true">&#8599;</span></a><a href="https://goodreads.com/scottsi">Goodreads <span aria-hidden="true">&#8599;</span></a></div></section>
+      </main>
+      <footer><span>&copy; <span id="year">2026</span> Scott Allison Si</span><span>A little corner of the internet.</span><a href="#main">Back to top &#8593;</a></footer>
+    </div>
+  </body>
+</html>

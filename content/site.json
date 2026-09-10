@@ -1,0 +1,109 @@
+{
+  "name": "Scott Allison Si",
+  "tagline": "Pixels, Products, and Prose",
+  "bio": "Product builder, writer, and educator based in Singapore.",
+  "bioUrl": "https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI",
+  "writingUrl": "https://slowframe.medium.com",
+  "linkedinUrl": "https://sg.linkedin.com/in/scottsi",
+  "goodreadsUrl": "https://goodreads.com/scottsi",
+  "projects": [
+    {
+      "title": "Freewheeling.io",
+      "description": "A little randomness goes a long way. Spin a wheel, pick a name, or make teams for your next class or workshop.",
+      "url": "https://freewheeling.io",
+      "status": "Live / Web tool",
+      "tags": [
+        "Learning",
+        "Play"
+      ]
+    },
+    {
+      "title": "Civilizational Peak Atlas",
+      "description": "An atlas of human achievement and experience, across nine domains. From cities and craft to ideas and the natural sublime.",
+      "url": "",
+      "status": "Exploration",
+      "tags": [
+        "Culture",
+        "Discovery"
+      ]
+    },
+    {
+      "title": "BlowUp",
+      "description": "A new experiment taking shape. More to share soon.",
+      "url": "",
+      "status": "Coming soon",
+      "tags": [
+        "Experiment"
+      ]
+    }
+  ],
+  "writing": [
+    {
+      "title": "When AI gives you more",
+      "url": "https://slowframe.medium.com/when-ai-gives-you-more-94978e9f1619",
+      "date": "2026-08-31"
+    },
+    {
+      "title": "Watches as Cosplay and the Objects that Own Us",
+      "url": "https://slowframe.medium.com/watches-as-cosplay-and-the-objects-that-own-us-b4e11ad0fdbf",
+      "date": "2026-05-31"
+    },
+    {
+      "title": "Lecturer, Lecturing",
+      "url": "https://medium.com/@slowframe/lecturer-lecturing-7f878ceb742f",
+      "date": "2025-10-31"
+    },
+    {
+      "title": "Notes on Notes",
+      "url": "https://medium.com/@slowframe/notes-on-notes-4d396c313813",
+      "date": "2025-06-30"
+    },
+    {
+      "title": "Powerpoint Craftsman",
+      "url": "https://medium.com/@slowframe/powerpoint-craftsman-1e80347c77c2",
+      "date": "2024-08-31"
+    },
+    {
+      "title": "The Tyranny of the Measurable",
+      "url": "https://medium.com/@slowframe/the-tyranny-of-the-measurable-2e2823a589b3",
+      "date": "2024-01-31"
+    },
+    {
+      "title": "The Fiction of Frictionless",
+      "url": "https://medium.com/@slowframe/the-fiction-of-frictionless-356c8356972e",
+      "date": "2023-09-30"
+    },
+    {
+      "title": "The Photographic Rendering of Words: How Writing Will Evolve in the Age of AI",
+      "url": "https://medium.com/@slowframe/the-impressionism-of-writing-how-writing-will-evolve-in-the-age-of-ai-d6f139ef0d6a",
+      "date": "2023-04-02"
+    },
+    {
+      "title": "Career as a Canvas",
+      "url": "https://medium.com/@slowframe/career-as-a-canvas-3bf7486fe490",
+      "date": "2020-06-29"
+    },
+    {
+      "title": "Product-Self Fit: Choosing What to Buy and Why",
+      "url": "https://medium.com/@slowframe/product-self-fit-f051d2f97c5f",
+      "date": "2017-07-02"
+    }
+  ],
+  "talks": [
+    {
+      "title": "AI + Product",
+      "description": "On the intersection of artificial intelligence and product management.",
+      "url": "https://www.youtube.com/watch?v=eMSzz3eMrmA"
+    },
+    {
+      "title": "Tech It or Leave It",
+      "description": "Technical skills you need in product management.",
+      "url": "https://www.youtube.com/watch?v=TucIqkHZYVs"
+    },
+    {
+      "title": "Product Experimentation",
+      "description": "A conversation about experimentation in product management.",
+      "url": "https://www.youtube.com/watch?v=myfo0QU-aYU"
+    }
+  ]
+}
