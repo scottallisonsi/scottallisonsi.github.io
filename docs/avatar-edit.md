@@ -2,7 +2,7 @@
 
 Created with the built-in imagegen tool on September 10, 2026.
 
-Source: `fastforwardistframe.png`.
+Source: the original illustrated portrait (`fastforwardistframe.png`, kept outside this repository).
 Production asset: `assets/portrait-smile.webp` (~6 KB, 256 x 258).
 The original remains the default. CSS makes both images circular and fades to
 the smiling image on mouse hover or keyboard focus. Clicking opens the bio.
@@ -19,6 +19,4 @@ background, scale and framing exactly as in the source. Preserve the full origin
 nearly square composition and every feature outside the mouth so switching images
 does not make the avatar jump. No added details or text. Output one edited image.
 
-Generated source retained at:
-`/Users/scottsi/.codex/generated_images/019c28bd-d14f-70b1-89e5-8e358959a6ec/exec-c4720256-7ebb-4132-b01e-bfad075b9c71.png`.
 The generated version is a close match, not pixel-identical outside the mouth.

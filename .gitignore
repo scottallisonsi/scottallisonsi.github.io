@@ -1,10 +1,2 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-vendor/
-.bundle/
-
 node_modules/
 .DS_Store

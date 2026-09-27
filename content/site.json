@@ -2,6 +2,9 @@
   "name": "Scott Allison Si",
   "tagline": "Pixels, Products, and Prose",
   "bio": "Product builder, writer, and educator based in Singapore.",
+  "intro": "Product builder, writer, and educator in Singapore. I teach at [NUS-ISS](https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI), write essays as [Slowframe](https://slowframe.medium.com), and make small tools for learning and curiosity.",
+  "location": "Singapore",
+  "timeZone": "Asia/Singapore",
   "bioUrl": "https://www.iss.nus.edu.sg/about-us/staff/detail/357/Scott%20SI",
   "writingUrl": "https://slowframe.medium.com",
   "linkedinUrl": "https://sg.linkedin.com/in/scottsi",
@@ -11,31 +14,34 @@
       "title": "Freewheeling.io",
       "description": "A little randomness goes a long way. Spin a wheel, pick a name, or make teams for your next class or workshop.",
       "url": "https://freewheeling.io",
-      "status": "Live / Web tool",
+      "status": "Live · Web tool",
       "tags": [
         "Learning",
         "Play"
-      ]
+      ],
+      "art": "wheel"
     },
     {
       "title": "Civilizational Peak Atlas",
       "description": "An atlas of human achievement and experience, across nine domains. From cities and craft to ideas and the natural sublime.",
       "url": "",
-      "status": "Exploration",
+      "status": "In progress",
       "tags": [
         "Culture",
         "Discovery"
-      ]
+      ],
+      "art": "globe"
     },
     {
       "title": "Blowup",
       "description": "Take an automatic watch apart in 3D. Explore its layers, inspect the mechanism, and see how wrist motion powers the hands.",
       "url": "https://scottallisonsi.github.io/blowup/",
-      "status": "Live / Interactive 3D",
+      "status": "Live · Interactive 3D",
       "tags": [
         "Learning",
         "Exploration"
-      ]
+      ],
+      "art": "watch"
     }
   ],
   "writing": [
@@ -72,7 +78,9 @@
     {
       "title": "The Fiction of Frictionless",
       "url": "https://medium.com/@slowframe/the-fiction-of-frictionless-356c8356972e",
-      "date": "2023-09-30"
+      "date": "2023-09-30",
+      "featured": true,
+      "note": "Concrete scenes that build into a challenge to one of product design’s central assumptions: that less friction is always better."
     },
     {
       "title": "The Photographic Rendering of Words: How Writing Will Evolve in the Age of AI",

@@ -1,172 +1,73 @@
-# Scott Allison Si
+# scottallisonsi.github.io
 
-A small, editorial personal website. The homepage uses plain HTML, CSS, and a little JavaScript;
-no framework, dependencies, remote fonts, analytics, or video embeds.
+The personal site of Scott Allison Si: selected essays, projects, talks, and a
+reading shelf. Live at <https://scottallisonsi.github.io>.
 
-## Update content
+Plain HTML, CSS, and a little JavaScript, generated from a few JSON files. No
+framework, analytics, trackers, or third-party requests. Hosted on GitHub Pages.
 
-Edit `content/site.json`, then run:
+## Updating the site
 
-```sh
-node scripts/build.mjs
-```
+**You can do everything from github.com.** Open a file under `content/`, click
+the pencil icon, edit, and commit to `main`. A GitHub Action rebuilds the pages
+and publishes them within a couple of minutes. If an edit breaks the JSON, the
+Action fails (you'll get an email) and the live site stays as it was.
 
-This regenerates `index.html` and `books/index.html`. Node 18+ is needed only to
-build, never to serve. Keep both generated pages alongside the source files when publishing.
-The layout lives in `templates/index.html`; visual styles live in `styles.css`.
-Do not edit the generated page directly: the next build would overwrite it.
+| To change… | Edit | Notes |
+| --- | --- | --- |
+| Name, tagline, intro, links | `content/site.json` | In `intro`, write links as `[text](https://…)` |
+| Selected essays | `writing` in `content/site.json` | Sorted newest-first automatically. Mark one `"featured": true` and give it a `"note"` to make it the "Start here" pick |
+| Projects | `projects` in `content/site.json` | Order is display order. Leave `url` empty for unreleased work. `art` is `wheel`, `globe`, `watch`, or `rings` |
+| Talks | `talks` in `content/site.json` | |
+| Book themes | `content/book-themes.json` | Each Goodreads book ID belongs to at most one theme; new books show as "Not yet grouped" |
 
-### Add a project
+### Refreshing books and new essays
 
-Add an object to the `projects` list. The list order is the display order:
+Actions tab → **Refresh books and writing** → **Run workflow**. It pulls your
+public Goodreads shelves, caches any new covers, saves the latest Medium posts
+to `content/latest-writing.json` as candidates, rebuilds, and commits. It never
+changes your curated essay list; copy a candidate into `site.json` if you want
+it on the homepage. Refreshing is manual by design.
 
-```json
-{
-  "title": "Project name",
-  "description": "What it does and who it is for.",
-  "url": "https://example.com",
-  "status": "Live / Web tool",
-  "tags": ["Category", "Another category"]
-}
-```
+Curation notes for the current essay selection are in `docs/writing-selection.md`.
 
-Use an empty `url` for unpublished projects. They appear as text, without a dead
-link. Status and tags are optional. An empty project list has a coming-soon state.
-The artwork is decorative CSS, not a product screenshot.
+## How it's put together
 
-Freewheeling's description was checked against its live homepage. The Atlas copy
-is based on your Civilizational Peak Atlas concept. Blowup links to its standalone interactive watch at `/blowup/`.
+- `content/`: everything you edit
+- `templates/`: page layouts; `templates/partials/` holds the shared head, masthead, and footer
+- `styles.css`: the design system for every page; `books/books.css` adds the bookshelf
+- `scripts/build.mjs`: generates `index.html`, `books/`, `colophon/`, `404.html`, `sitemap.xml`, and `robots.txt`
+- `scripts/check.mjs`: verifies the output (template fields, local links, share images, an 11px minimum text size)
+- `blowup/`: the prebuilt 3D watch; its source is in `tools/blowup/`
+- `assets/fonts/`: Source Serif 4 and IBM Plex Mono, self-hosted under the SIL Open Font License
+- `assets/og/`: link-preview images, regenerated with `scripts/make-share-images.mjs` (rarely needed)
 
-### Curate writing and discover new articles
+Generated pages are committed, so the site works without a build step. Don't
+edit `index.html` or `books/index.html` by hand; the next build overwrites them.
 
-The homepage shows ten selected essays from across the archive, rather than the
-ten newest posts. Edit the `writing` array in `content/site.json` and rebuild.
-The build sorts the selection in reverse chronological order automatically.
-See `docs/writing-selection.md` for the shortlist, rationale, and alternates.
-
-Python 3 uses Medium's public RSS feed, with no packages or API keys:
-
-```sh
-python3 scripts/update-writing.py
-```
-
-This saves the latest ten candidates in `content/latest-writing.json`. Copy any
-you want to feature into `content/site.json`, then run `node scripts/build.mjs`.
-The command never changes your curated homepage. A failed or empty feed leaves
-the existing candidate list intact. Refresh is manual, not scheduled.
-Visitors load the saved HTML, never the feed.
-
-### Refresh the bookshelf
-
-The `/books/` page shows only books marked read in your public Goodreads library,
-not a live widget. The import retains the other shelves for future use, but they
-are never embedded in the page. No login, API key, or visitor tracking is needed.
+## Working locally (optional)
 
 ```sh
-python3 scripts/update-books.py
-node scripts/cache-book-covers.mjs
-node scripts/build.mjs
+node scripts/build.mjs && node scripts/check.mjs   # Node 18+, no packages
+python3 -m http.server 8000                        # then open http://localhost:8000
 ```
 
-The optional cover-cache step needs the `sharp` image library. Install it once
-with `npm install --no-save --package-lock=false sharp`, or point `SHARP_MODULE`
-to an existing installation. Do not commit `node_modules/`. Existing covers are
-reused, and an unavailable cover gets a title-and-author fallback. New content
-works without running the cover step. The importer needs Python 3 only; failed
-requests or invalid data leave the previous snapshot intact.
-
-Data lives in `content/books.json`, the layout in `templates/books.html`, and
-the small interaction and style files in `books/`. Covers are local WebPs in
-`assets/books/`, at most 240 by 360 pixels. All read books are shown together,
-with native lazy loading for covers instead of pagination. Visitors never contact Goodreads until
-they choose an outbound link. Search, filters, sorting, and the cover/spine
-switch run entirely in the browser. Filter URLs can be bookmarked. Without
-JavaScript, all books remain ordinary links.
-
-Ratings are yours, not community averages. Unrated is distinct from zero.
-The default order is date added, not date read: most entries have no read date.
-The page displays its snapshot date; refreshing and publishing are manual.
-Automatic syncing is intentionally not enabled.
-
-The infographic is built from `content/book-themes.json`. Its six themes are
-editorial primary-topic groupings, not Goodreads-supplied genres. Assign each
-book ID to at most one group. All counts, percentages, and the most represented
-author are calculated at build time from read books only. New books without a
-theme appear as "Not yet grouped", never guessed into a category. Clicking a
-theme filters the bookshelf; the infographic continues to summarize the full
-collection. No charting library, images, or AI calls are required to render it.
-
-## Preview
-
-```sh
-python3 -m http.server 8000 --bind 127.0.0.1
-```
-
-Open http://localhost:8000. The page also works when opened directly as a file.
-
-## GitHub Pages
-
-Public destination: https://scottallisonsi.github.io/
-Repository: scottallisonsi/scottallisonsi.github.io
-
-This workspace inherits a Git repository rooted in the home directory. Use an
-isolated clone of the website repository when deploying. Do not use `git add .`
-from the inherited home repository.
-
-Rebuild, then copy these public assets to the Pages repository root:
-
-- `index.html`
-- `styles.css`
-- `theme.js`
-- `script.js`
-- `books/`
-- `assets/`
-
-Also commit `content/`, `templates/`, `scripts/`, and this README so the site
-remains maintainable. Push normally to the Pages source branch, preserving remote
-history. Keep the existing Jekyll configuration and do not add `.nojekyll`:
-the writing archive, older posts, colophon, and 404 page still use Jekyll. The
-homepage has no front matter and is served as prebuilt HTML. Exclude `content/`,
-`templates/`, `scripts/`, and `docs/` from the Jekyll build. The original portrait
-`fastforwardistframe.png` is retained locally; the site loads two ~6 KB WebPs for
-the neutral and smiling states. Both are circular. The smile appears on hover or
-keyboard focus; the portrait is also a link to the bio. The imagegen prompt and
-asset provenance are in `docs/avatar-edit.md`.
-
-## Behavior
-
-- Theme follows the system until the visitor chooses a mode; saved preferences
-  apply before first paint. Blocked storage does not break the toggle.
-- All writing, project information, and talks work without JavaScript.
-- Motion respects reduced-motion preferences.
-- Page navigation and focus outlines work with a keyboard.
-- All page assets are local; the homepage payload is roughly 35 KB before HTTP
-  compression. The bookshelf loads its own small scripts and lazy-loaded covers
-  only when visited. No install step is needed to preview or publish.
-
-## Blowup watch explorer
-
-`/blowup/` is a separate React/Three.js application with prebuilt static files in
-`blowup/`. Its source and lockfile live in `tools/blowup/`, excluded from Jekyll.
-The homepage links to it with a normal anchor; it never loads or prefetches the
-watch bundle. No iframe, shared framework, external runtime, or service worker
-is involved. The watch also links back to the homepage.
-
-To update it (Node 22.12+):
+To rebuild Blowup (Node 22.12+):
 
 ```sh
 npm --prefix tools/blowup ci
 npm --prefix tools/blowup run build
-node scripts/build.mjs
-node scripts/check-blowup.mjs
 ```
 
-Commit both `tools/blowup/` and the generated `blowup/` assets. Keep the existing
-Jekyll setup: the export uses ordinary `assets/` filenames under `/blowup/`,
-so no underscore-directory include rule or `.nojekyll` file is needed.
+Blowup is an original, simplified NH35 reconstruction. Dependency licences are
+in `blowup/THIRD_PARTY_LICENSES.txt`. Its code loads only on `/blowup/`.
 
-The watch is an original simplified NH35 educational reconstruction, using no
-purchased model. Dependencies' license texts are included in
-`blowup/THIRD_PARTY_LICENSES.txt`; this text is not fetched by the application.
-The 3D module is loaded separately on the subpage; playback is on demand and
-stops rendering when the tab is hidden.
+## Design notes
+
+One serif, Source Serif 4, carries headlines and reading text through its
+optical sizes; IBM Plex Mono is reserved for small labels. Warm paper, ink, and
+a single terracotta accent, with a faint paper grain. Every section shares one
+two-column rhythm: a narrow rail for the heading, a wide column for the content.
+Small, quiet details: the portrait smiles on hover, the clock shows Singapore
+time, and each project drawing moves on hover. The theme follows the system
+until the visitor chooses, and motion respects reduced-motion settings.

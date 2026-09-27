@@ -1,16 +1,67 @@
----
-layout: default
-title: Page not found
-permalink: /404.html
----
-<article class="post">
-  <header class="post-header">
-    <p class="post-meta">404</p>
-    <h1 class="post-title">Not every frame survives.</h1>
-    <p class="post-subtitle">
-      This page doesn't exist — or it moved somewhere quieter.
-      Try the <a href="{{ '/' | relative_url }}">front page</a> or
-      <a href="{{ '/writing/' | relative_url }}">the writing index</a>.
-    </p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Page not found · Scott Allison Si</title>
+<meta name="description" content="This page does not exist.">
+<link rel="canonical" href="https://scottallisonsi.github.io/">
+<meta property="og:site_name" content="Scott Allison Si">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page not found · Scott Allison Si">
+<meta property="og:description" content="This page does not exist.">
+<meta property="og:url" content="https://scottallisonsi.github.io/">
+<meta property="og:image" content="https://scottallisonsi.github.io/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scott Allison Si: Pixels, Products, and Prose">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preload" href="/assets/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/theme.js"></script>
+<link rel="stylesheet" href="/styles.css">
+<script src="/script.js" defer></script>
+
+<meta name="robots" content="noindex">
+</head>
+<body>
+<div class="page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="edition" href="/">Pixels, Products, and Prose</a>
+  <div class="masthead-tools">
+    <nav aria-label="Main"><a href="/#writing">Writing</a><a href="/#projects">Projects</a><a href="/#talks">Talks</a><a href="/books/">Books</a></nav>
+    <button id="theme-toggle" type="button" hidden aria-label="Switch to dark mode">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" stroke="none"/></svg>
+      <span id="theme-label">Dark</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="prose notfound">
+  <header class="prose-header">
+    <p class="label">404</p>
+    <h1>This page doesn&rsquo;t exist.</h1>
+    <p class="lede">It may have moved, or the link may be mistyped. Essays now live on Medium; everything else is a click away.</p>
   </header>
-</article>
+  <ul class="notfound-links">
+    <li><a href="/">Homepage <span class="arrow" aria-hidden="true">&#8594;</span></a></li>
+    <li><a href="https://slowframe.medium.com">Essays on Medium <span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+    <li><a href="/books/">Books <span class="arrow" aria-hidden="true">&#8594;</span></a></li>
+  </ul>
+</main>
+<footer class="site-footer">
+  <p class="rail-label">Elsewhere</p>
+  <div class="footer-body">
+    <ul class="elsewhere">
+      <li><a href="https://slowframe.medium.com">Medium <span class="arrow" aria-hidden="true">&#8599;</span></a><span>Essays, as Slowframe</span></li>
+      <li><a href="https://sg.linkedin.com/in/scottsi">LinkedIn <span class="arrow" aria-hidden="true">&#8599;</span></a><span>Work and teaching</span></li>
+      <li><a href="https://goodreads.com/scottsi">Goodreads <span class="arrow" aria-hidden="true">&#8599;</span></a><span>What I&rsquo;m reading</span></li>
+    </ul>
+    <p class="footer-meta"><span>&copy; <span id="year">2026</span> Scott Allison Si</span><a href="/colophon/">Colophon</a><a href="#main">Back to top <span aria-hidden="true">&#8593;</span></a></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

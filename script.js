@@ -25,4 +25,21 @@ if (toggle && label) {
   });
 }
 
-document.getElementById("year").textContent = new Date().getFullYear();
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
+
+// Local time in Singapore, e.g. "6:25 pm". Stays hidden without JavaScript.
+const clock = document.getElementById("local-time");
+if (clock) {
+  const format = new Intl.DateTimeFormat("en-US", {
+    hour: "numeric", minute: "2-digit", hour12: true, timeZone: clock.dataset.zone,
+  });
+  const tick = () => {
+    const now = new Date();
+    clock.textContent = format.format(now).replace(/\s/g, " ").toLowerCase();
+    clock.dateTime = now.toISOString();
+  };
+  tick();
+  clock.parentElement.hidden = false;
+  setInterval(tick, 15000);
+}

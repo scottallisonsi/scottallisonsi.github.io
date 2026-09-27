@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+</head>
+<body>
+<div class="page">
+{{> masthead}}
+<main id="main" class="prose">
+  <header class="prose-header">
+    <p class="label">Colophon</p>
+    <h1>How this site is made</h1>
+  </header>
+  <section class="section">
+    <h2 class="rail">Type</h2>
+    <div class="section-body"><p>Set in <a href="https://github.com/adobe-fonts/source-serif">Source Serif 4</a>, whose optical sizes let the same family carry both headlines and small print, with <a href="https://github.com/IBM/plex">IBM Plex Mono</a> for labels. Both are open-source and served from this site, not from a font service.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Build</h2>
+    <div class="section-body"><p>Plain HTML, CSS, and a little JavaScript. The pages are generated from a few JSON files by a small Node script, and GitHub Actions rebuilds them whenever the content changes. Hosted on GitHub Pages.</p><p>There are no analytics, trackers, or cookies. Your light or dark preference is saved only in your own browser.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Books</h2>
+    <div class="section-body"><p>The bookshelf is a snapshot of my public Goodreads library, refreshed by hand. Covers are stored here, so browsing the shelf doesn&rsquo;t contact Goodreads.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Blowup</h2>
+    <div class="section-body"><p>An original, simplified model of an NH35 automatic movement, built with React and Three.js. Its code loads only on its own page.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Portrait</h2>
+    <div class="section-body"><p>An illustration of me, in my usual hoodie. Hover over it on the homepage and it smiles back.</p></div>
+  </section>
+</main>
+{{> footer}}
+</div>
+</body>
+</html>

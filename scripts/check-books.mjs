@@ -25,5 +25,8 @@ for (const group of taxonomy.groups) {
 }
 for (const book of embedded) assert.equal(book.topic, assignments.get(book.id) || 'ungrouped');
 const homepage = await readFile(new URL('index.html', root), 'utf8');
-assert(!/<(?:script|link|img)[^>]+(?:src|href)="(?:\.\.\/)?(?:assets\/)?books\//.test(homepage));
-console.log(`Books checked: ${read.length} read books; complete theme map; no homepage bookshelf assets.`);
+const shelfImages = homepage.match(/<img[^>]+assets\/books\/[^>]+>/g) || [];
+assert(shelfImages.length <= 6, 'Homepage shows at most six covers');
+assert(shelfImages.every(tag => tag.includes('loading="lazy"')), 'Homepage covers must lazy-load');
+assert(!/<script[^>]+books\.js/.test(homepage), 'Bookshelf script stays on /books/');
+console.log(`Books checked: ${read.length} read books; complete theme map; homepage shelf is light.`);

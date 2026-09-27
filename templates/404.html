@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<meta name="robots" content="noindex">
+</head>
+<body>
+<div class="page">
+{{> masthead}}
+<main id="main" class="prose notfound">
+  <header class="prose-header">
+    <p class="label">404</p>
+    <h1>This page doesn&rsquo;t exist.</h1>
+    <p class="lede">It may have moved, or the link may be mistyped. Essays now live on Medium; everything else is a click away.</p>
+  </header>
+  <ul class="notfound-links">
+    <li><a href="/">Homepage <span class="arrow" aria-hidden="true">&#8594;</span></a></li>
+    <li><a href="{{MEDIUM_URL}}">Essays on Medium <span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+    <li><a href="/books/">Books <span class="arrow" aria-hidden="true">&#8594;</span></a></li>
+  </ul>
+</main>
+{{> footer}}
+</div>
+</body>
+</html>

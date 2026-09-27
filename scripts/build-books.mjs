@@ -1,5 +1,5 @@
-import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
-const root = new URL('../', import.meta.url);
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { root, render, hasCover, SITE_URL } from './render.mjs';
 const library = JSON.parse(await readFile(new URL('content/books.json', root), 'utf8'));
 const taxonomy = JSON.parse(await readFile(new URL('content/book-themes.json', root), 'utf8'));
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -23,7 +23,7 @@ for (const book of readBooks) {
   const url = new URL(book.url);
   if (url.protocol !== 'https:' || url.hostname !== 'www.goodreads.com') throw new Error('Invalid book link');
   let cover = '';
-  try { await access(new URL(`assets/books/${book.id}.webp`, root)); cover = `../assets/books/${book.id}.webp`; } catch {}
+  if (await hasCover(book.id)) cover = `../assets/books/${book.id}.webp`;
   const group = byID.get(book.id) || groups.at(-1);
   const { coverSource, ...publicBook } = book;
   bookData.push({ ...publicBook, cover, tone:group.tone, topic:group.id });
@@ -54,14 +54,16 @@ const values = {
   THEMES: populated.map(group=>`<button type="button" class="theme-key ${group.tone}" data-topic="${group.id}" aria-pressed="false" disabled><i aria-hidden="true"></i><span>${escape(group.label)}</span><strong>${group.books.length}</strong></button>`).join(''),
   INSIGHT: `<p><strong>${percent(fiction,readBooks.length)}%</strong> fiction &amp; poetry.</p><p>${nonfiction ? `Of the grouped nonfiction, <b>${percent(systemsMindMaking,nonfiction)}%</b> explores how people think, make things, and organize society.` : 'Themes update as books are added.'}</p>`,
   AUTHOR_INSIGHT: `Most represented author: <strong>${escape(topAuthors[0][0])}</strong> (${topAuthors[0][1]} books).`,
-  UPDATED: escape(library.updated), YEAR: new Date().getFullYear(),
+  UPDATED: escape(library.updated),
   UPDATED_LABEL: new Intl.DateTimeFormat('en', {day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(library.updated)),
   DATA: JSON.stringify(bookData).replace(/</g,'\\u003c'),
 };
-const template = await readFile(new URL('templates/books.html', root),'utf8');
-const html = template.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
-  if (!(key in values)) throw new Error(`Unknown books template key: ${key}`);
-  return values[key];
+const html = await render('books.html', {
+  ...values, ROOT: '../', CURRENT_BOOKS: ' aria-current="page"',
+  TITLE: 'Books · Scott Allison Si',
+  DESCRIPTION: `${readBooks.length} books Scott Allison Si has read, grouped into recurring themes, with personal ratings and a searchable shelf.`,
+  URL: `${SITE_URL}books/`, OG_IMAGE: `${SITE_URL}assets/og/books.png`, OG_ALT: `${readBooks.length} books read, shown as a colour-coded map of themes`,
+  EXTRA_HEAD: '<link rel="stylesheet" href="books.css">\n<script src="books.js" defer></script>',
 });
 await mkdir(new URL('books/',root),{recursive:true});
 await writeFile(new URL('books/index.html',root),html);
