@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Colophon · Scott Allison Si</title>
+<meta name="description" content="How this site is made: type, tools, and principles.">
+<link rel="canonical" href="https://scottallisonsi.github.io/colophon/">
+<meta property="og:site_name" content="Scott Allison Si">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Colophon · Scott Allison Si">
+<meta property="og:description" content="How this site is made: type, tools, and principles.">
+<meta property="og:url" content="https://scottallisonsi.github.io/colophon/">
+<meta property="og:image" content="https://scottallisonsi.github.io/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scott Allison Si: Pixels, Products, and Prose">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="preload" href="../assets/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../theme.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<script src="../script.js" defer></script>
+
+</head>
+<body>
+<div class="page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="edition" href="../">Pixels, Products, and Prose</a>
+  <div class="masthead-tools">
+    <nav aria-label="Main"><a href="../#writing">Writing</a><a href="../#projects">Projects</a><a href="../#talks">Talks</a><a href="../books/">Books</a></nav>
+    <button id="theme-toggle" type="button" hidden aria-label="Switch to dark mode">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" stroke="none"/></svg>
+      <span id="theme-label">Dark</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="prose">
+  <header class="prose-header">
+    <p class="label">Colophon</p>
+    <h1>How this site is made</h1>
+  </header>
+  <section class="section">
+    <h2 class="rail">Type</h2>
+    <div class="section-body"><p>Set in <a href="https://github.com/adobe-fonts/source-serif">Source Serif 4</a>, whose optical sizes let the same family carry both headlines and small print, with <a href="https://github.com/IBM/plex">IBM Plex Mono</a> for labels. Both are open-source and served from this site, not from a font service.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Build</h2>
+    <div class="section-body"><p>Plain HTML, CSS, and a little JavaScript. The pages are generated from a few JSON files by a small Node script, and GitHub Actions rebuilds them whenever the content changes. Hosted on GitHub Pages.</p><p>There are no analytics, trackers, or cookies. Your light or dark preference is saved only in your own browser.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Books</h2>
+    <div class="section-body"><p>The bookshelf is a snapshot of my public Goodreads library, refreshed by hand. Covers are stored here, so browsing the shelf doesn&rsquo;t contact Goodreads.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Blowup</h2>
+    <div class="section-body"><p>An original, simplified model of an NH35 automatic movement, built with React and Three.js. Its code loads only on its own page.</p></div>
+  </section>
+  <section class="section">
+    <h2 class="rail">Portrait</h2>
+    <div class="section-body"><p>An illustration of me, in my usual hoodie. Hover over it on the homepage and it smiles back.</p></div>
+  </section>
+</main>
+<footer class="site-footer">
+  <p class="rail-label">Elsewhere</p>
+  <div class="footer-body">
+    <ul class="elsewhere">
+      <li><a href="https://slowframe.medium.com">Medium <span class="arrow" aria-hidden="true">&#8599;</span></a><span>Essays, as Slowframe</span></li>
+      <li><a href="https://sg.linkedin.com/in/scottsi">LinkedIn <span class="arrow" aria-hidden="true">&#8599;</span></a><span>Work and teaching</span></li>
+      <li><a href="https://goodreads.com/scottsi">Goodreads <span class="arrow" aria-hidden="true">&#8599;</span></a><span>What I&rsquo;m reading</span></li>
+    </ul>
+    <p class="footer-meta"><span>&copy; <span id="year">2026</span> Scott Allison Si</span><a href="../colophon/">Colophon</a><a href="#main">Back to top <span aria-hidden="true">&#8593;</span></a></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

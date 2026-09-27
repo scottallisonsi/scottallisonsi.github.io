@@ -1,0 +1,51 @@
+# Manual only: Actions tab -> "Refresh books and writing" -> Run workflow.
+# Pulls the public Goodreads shelves and Medium feed, caches new covers,
+# rebuilds, and commits. The curated homepage essays are never changed;
+# new Medium posts land in content/latest-writing.json as candidates.
+name: Refresh books and writing
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Import Goodreads shelves
+        run: python3 scripts/update-books.py
+      - name: Cache new covers
+        run: |
+          npm install --no-save --package-lock=false sharp
+          node scripts/cache-book-covers.mjs
+      - name: Save new Medium essays as candidates
+        run: python3 scripts/update-writing.py || echo "Medium feed unavailable; keeping existing candidates."
+      - name: Build pages
+        run: node scripts/build.mjs
+      - name: Check output
+        run: node scripts/check.mjs
+      - name: Commit refresh
+        run: |
+          rm -rf node_modules
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Refresh books and writing candidates"
+            git push
+          fi

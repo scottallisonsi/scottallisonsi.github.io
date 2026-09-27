@@ -1,5 +1,5 @@
 // Offline cover optimization; the site itself never needs sharp or remote requests.
-import { readFile, mkdir, access, writeFile, rename } from 'node:fs/promises';
+import { readFile, mkdir, stat, writeFile, rename } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const sharp = require(process.env.SHARP_MODULE || 'sharp');
@@ -15,7 +15,8 @@ async function worker() {
   while (cursor < books.length) {
     const book = books[cursor++];
     const path = new URL(`${book.id}.webp`, directory);
-    try { await access(path); skipped++; continue; } catch {}
+    // Reuse real covers; retry missing files and tiny placeholders.
+    try { if ((await stat(path)).size > 1024) { skipped++; continue; } } catch {}
     if (!book.coverSource) { failed.push(book.id); continue; }
     try {
       const url = new URL(book.coverSource);
@@ -24,6 +25,8 @@ async function worker() {
       if (!response.ok || !response.headers.get('content-type')?.startsWith('image/')) throw new Error(`Image response ${response.status}`);
       const buffer = Buffer.from(await response.arrayBuffer());
       if (buffer.length > 10000000) throw new Error('Oversized image');
+      const { width = 0, height = 0 } = await sharp(buffer).metadata();
+      if (width < 60 || height < 90) throw new Error(`Placeholder image (${width}x${height})`);
       const output = await sharp(buffer).rotate().resize({ width: 240, height: 360, fit: 'inside', withoutEnlargement: true }).webp({ quality: 77 }).toBuffer();
       const temporary = new URL(`${book.id}.tmp`, directory);
       await writeFile(temporary, output);
